@@ -10,10 +10,10 @@ object RomNums {
 
   def numeralsConverter(n: Int): String={
 
-    def go(n:Int, holder: Int, i: Int, input: List[(String, Int)], output: List[String]): List[String] ={
-      if(n==i) output
-      else go(n, holder - input.head._2, i + input.head._2, input.filter(_._2 <= (holder - input.head._2)), input.head._1::output)
+    def go(n:Int, holder: Int, input: List[(String, Int)], output: List[String]): List[String] ={
+      if(holder <= 0) output
+      else go(n, holder - input.head._2,input.filter(_._2 <= (holder - input.head._2)), input.head._1::output)
     }
-    go(n, n, 0, numerals.filter(_._2 <= n), List[String]()).reverse.mkString
+    go(n, n, numerals.filter(_._2 <= n), List[String]()).reverse.mkString
   }
 }
